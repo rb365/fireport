@@ -1,6 +1,6 @@
 Fireport
 ========
-Forward ports behind router/firewall through Firebase.
+Forward ports behind router/firewall through [Firebase](https://www.firebase.com/).
 
 BEWARE: this is not secure at all!!!
 
