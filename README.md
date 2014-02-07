@@ -1,10 +1,11 @@
-fireport
+Fireport
 ========
 Forward ports through Firebase.
 
 BEWARE: this is not secure at all!!!
 
-Sample usecase: bypass firewalls and routers to run VNC
+Sample usecase: connect to VNC server behind router
+
 1. Run VNC Server on machine1
 2. Run fireport on machine1: java -jar fireport.jar server localhost 5900
 3. Run fireport on machine2: java -jar fireport.jar client localhost 5901
