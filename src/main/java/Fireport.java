@@ -80,8 +80,9 @@ public class Fireport {
         String out = DatatypeConverter.printBase64Binary(Arrays.copyOf(buf, size));
         System.out.println("Sending:" + out);
         output.setValue(out);
-      } else if (size < 0) { //EOF
-        break;
+      } else if (size < 0) {
+        System.out.println("Reached EOF!");
+        System.exit(0);
       }
     }
   }
