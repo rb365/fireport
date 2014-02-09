@@ -5,6 +5,7 @@ Forward ports behind router/firewall through [Firebase](https://www.firebase.com
 BEWARE: this is not secure at all!!!
 
 Sample usecase: connect to VNC server behind router
+
 vnc client <---> Fireport server <---> Firebase <---> Fireport client <---> vnc server
 
 1. Run VNC Server on machine1
