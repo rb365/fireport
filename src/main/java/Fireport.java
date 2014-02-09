@@ -19,31 +19,34 @@ public class Fireport {
     String ip = null;
     int port = 0;
     boolean isServer = true;
-    if (args.length == 3) {
-      isServer = "server".equalsIgnoreCase(args[0]);
-      ip = args[1];
+    String connectionName = null;
+    if (args.length == 4 || args.length == 3) {
+      connectionName = args[0];
+      isServer = "server".equalsIgnoreCase(args[1]);
       port = Integer.valueOf(args[2]);
+      ip = isServer ? null : (args.length == 4 ? args[3] : "localhost");
     } else {
-      System.out.println("fireport {server,client} {ip} {port}");
-      System.out.println("sample: fireport server localhost 1234");
-      System.out.println("sample: fireport client localhost 1234");
+      System.out.println("fireport {connection name} {server,client} {port} {ip}");
+      System.out.println("ip is optional and only applicable for client. Default value is localhost.");
+      System.out.println("sample: fireport vncwork server 1234");
+      System.out.println("sample: fireport vncwork client localhost 1234");
       System.exit(0);
     }
 
     Socket socket;
     if (isServer) {
-      System.out.println("Connecting....");
-      socket = new Socket(ip, port);
-    } else {
       System.out.println("Waiting for connection....");
       socket = new ServerSocket(port).accept();
+    } else {
+      System.out.println("Connecting....");
+      socket = new Socket(ip, port);
     }
     System.out.println("Connected!");
 
     final BufferedInputStream inputStream = new BufferedInputStream(socket.getInputStream());
     final OutputStream outputStream = socket.getOutputStream();
-    Firebase output = new Firebase(URL + ip + "/output");
-    Firebase input = new Firebase(URL + ip + "/input");
+    Firebase output = new Firebase(URL + connectionName + "/output");
+    Firebase input  = new Firebase(URL + connectionName + "/input");
 
     connect(isServer ? input : output, isServer ? output : input, inputStream, outputStream);
   }

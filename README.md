@@ -5,11 +5,12 @@ Forward ports behind router/firewall through [Firebase](https://www.firebase.com
 BEWARE: this is not secure at all!!!
 
 Sample usecase: connect to VNC server behind router
+vnc client <---> Fireport server <---> Firebase <---> Fireport client <---> vnc server
 
 1. Run VNC Server on machine1
-2. Run fireport on machine1: java -jar fireport.jar server localhost 5900
-3. Run fireport on machine2: java -jar fireport.jar client localhost 5901
-4. Run VNC Viewer on machine2 and connect to localhost:5901
+2. Run Fireport client on machine1: java -jar fireport.jar vnc-test client 5900
+3. Run Fireport server on machine2: java -jar fireport.jar vnc-test server 5900
+4. Run VNC Viewer on machine2 and connect to localhost
 5. Enjoy!
 
 Build instructions:
